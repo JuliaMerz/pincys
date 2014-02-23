@@ -1,3 +1,20 @@
-p {
+.pincysButton {
+  width: 34px;
+  height: 34px;
+  margin-left: 2px;
   color: blue;
+  padding: 1px;
+  background-image: linear-gradient(#DDDDDD, #AAAAAA);
+}
+.pincysEM {
+  color: green;
+  background-repeat: no-repeat;
+  height: inherit;
+  width: inherit;
+}
+.pincysButton:hover{
+  background-image: linear-gradient(#FFFFFF, #CCCCCC);
+}
+.pincysButton:active{
+  background-image: linear-gradient(#BBBBBB, #EEEEEE);
 }
