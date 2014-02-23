@@ -31,6 +31,7 @@ def macy_search(key):
             k = 1
             for i in products:
                 retArr[k] = i["summary"]["name"]
+                print ">>>>>>>>>>>>>>"+retArr[k]
                 k += 1
                 retArr[k] = i["summary"]["producturl"]
                 k += 1

@@ -4,7 +4,7 @@
             <ul class="overview">
                 {% if suggestions != None %}
                 {%for suggest in suggestions%}
-                    <li><img src="{{suggest.picture_URL}}"><a href="{{suggest.product_URL}}"><h3 class="pincysHeading">{{product_title}}</h3><span class="pincey">Accurate? <a href="{{url_for('rate', id=suggest.id, rating=5)}}">Yes</a>|<a href="{{url_for('rate', id=suggest.id, rating=1)}}">No</a></span></li>
+                    <li><img src="{{suggest.picture_URL}}"><a href="{{suggest.product_URL}}"><h3 class="pincysHeading">{{suggest.product_title}}</h3><span class="pincey">Accurate? <a target="_blank" href="{{url_for('rate', id=suggest.id, rating=5)}}">Yes</a>|<a href="{{url_for('rate', id=suggest.id, rating=1)}}">No</a></span></li>
                 {% endfor %}
                 {% else %}
                 <p>Sorry, no results, would you like to suggest one?</p>

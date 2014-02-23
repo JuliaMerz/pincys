@@ -24,9 +24,9 @@ def get_suggestions(pint_obj, pinid, desc, purl):
             #this means we got data back
             k = 1
             #create new suggestion obj
-            while vals[k] != None and k < 16:
-                s = models.suggestion(pintrest_id=pint_obj,product_title=vals[k],
-                    product_URL=vals[k+1], picture_URL=vals[k+2])
+            while vals[k] != None and k < 13:
+                s = models.suggestion(pintrest_id=pint_obj.id,product_title=vals[k], product_URL=vals[k+1], picture_URL=vals[k+2])
+                print s
                 db.session.add(s)
                 db.session.commit()
                 currsug.append(s)
@@ -37,12 +37,6 @@ def get_suggestions(pint_obj, pinid, desc, purl):
         return None
     weights = [5,4,3,2,1]
     z = 0
-    for k in currsug:
-        k.sort_val = (k.user_rating * 5 + k.mturk_rating * 3 + weights[z] * 2 + random.randrange(10))
-        weights[k] = weight
-        k += 1
-    currsug.sort(key = lambda k: k.sort_vaL)
-
     print currsug;
     #need to actually order the suggestions according to their weights
     #higher == better
