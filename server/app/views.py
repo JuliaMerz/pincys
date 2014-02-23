@@ -13,12 +13,13 @@ def process_input():
     #get info from the request
     pinid = request.form['ID']
     desc = request.form['DESCRIPTION']
+    picurl = request.form['PICURL']
     
     #get item in the db or none if its not there
     picobj = models.pintrest_picture.query.filter_by(pintrest_ID=pinid).first()
     
     #get the suggestion objects etc
-    sorted_sugg_list = get_suggestions(picobj)
+    sorted_sugg_list = get_suggestions(picobj, pinid, desc)
     
     #convert it to html and return it (sebastian do this)
     return get_html(sorted_sugg_list)

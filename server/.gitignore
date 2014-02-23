@@ -5,3 +5,4 @@ db_repository/
 app.db
 run.py
 *.pyc
+/app/keys.py
