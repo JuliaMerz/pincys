@@ -1,10 +1,11 @@
 .pincysButton {
   width: 34px;
-  height: 34px;
+  height: 32px;
   margin-left: 2px;
   color: blue;
-  padding: 1px;
-  background-image: linear-gradient(#DDDDDD, #AAAAAA);
+  padding-left: 1px;
+  padding-right: 1px;
+  background-image: linear-gradient(#FFFFFF, #F0F0F0);
 }
 .pincysEM {
   color: green;
@@ -16,5 +17,21 @@
   background-image: linear-gradient(#FFFFFF, #CCCCCC);
 }
 .pincysButton:active{
-  background-image: linear-gradient(#BBBBBB, #EEEEEE);
+  background-image: linear-gradient(#F0F0F0, #FFFFFF);
+}
+
+.pincysSuggestionWindow {
+    width: 200px;
+}
+
+h3 {
+    display:float;
+    margin-left: 10px;
+    padding-bottom: 20px;
+    color:white;
+    background-color: rgba(25, 25, 25, 0.5);
+    position:relative;
+    float: left;
+    width: 200px;
+    top: -60px;
 }
