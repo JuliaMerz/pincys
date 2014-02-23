@@ -10,8 +10,7 @@ def macy_search(key):
         "X-Macys-Webservice-Client-Id": APIKEY,
     }
     
-    url = 'http://api.macys.com/v4/catalog/search?searchphrase=' + key +
-    '&show=product&perpage=5&imagewidth=262&avoidredirects=true'
+    url = 'http://api.macys.com/v4/catalog/search?searchphrase=' + key + '&show=product&perpage=5&imagewidth=262&avoidredirects=true'
     resp = requests.get(url ,headers=hdr)
     app.logger.debug(resp.status_code)
     jdata = json.loads(resp.text)
