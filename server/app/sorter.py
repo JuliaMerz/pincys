@@ -17,10 +17,10 @@ def get_suggestions(pint_obj, pinid, desc, purl):
     #now we know the obj exists, so lets find some suggestions
     currsug = list(pint_obj.suggestions.all())
     listwords = rake(desc)
+    i = 0
     while len(currsug) < 5 and i < len(listwords)-1:
-        i = 0
         vals = macy_search(listwords[i] + listwords[i+1]);
-        if vals[0] != 0: 
+        if vals != None and vals[0] != 0: 
             #this means we got data back
             k = 1
             #create new suggestion obj

@@ -1,0 +1,21 @@
+<div id="slider" style="border: 1px solid black;" class="id23">
+
+        <div class="viewport">
+            <ul class="overview">
+                {% if suggestions != None %}
+                {%for suggest in suggestions%}
+                    <li><img src="{{suggest.picture_URL}}"><a href="{{suggest.product_URL}}"><h3 class="pincysHeading">{{product_title}}</h3><span class="pincey">Accurate? <a href="{{url_for('rate', id=suggest.id, rating=5)}}">Yes</a>|<a href="{{url_for('rate', id=suggest.id, rating=1)}}">No</a></span></li>
+                {% endfor %}
+                {% else %}
+                <p>Sorry, no results, would you like to suggest one?</p>
+                {% endif %}
+            </ul>
+        </div>
+        <a class="buttons prevy" href="#">&lt;</a>
+        <a class="buttons nexty" href="#">&gt;</a>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#slider').tinycarousel();
+        });
+    </script>

@@ -67,7 +67,10 @@ def process_input():
     
     print data
     pinid = data['pinid']
-    desc = data['description']
+    if "description" in data:
+        desc = data['description']
+    else:
+        desc = ''
     picurl = data['picurl']
     
     #get item in the db or none if its not there
@@ -77,7 +80,8 @@ def process_input():
     sorted_sugg_list = sorter.get_suggestions(picobj, pinid, desc, picurl)
     
     #convert it to html and return it (sebastian do this)
-    return get_suggest_html(sorted_sugg_list)
+    print sorted_sugg_list
+    return htmlhelper.get_suggest_html(sorted_sugg_list)
 
 @app.route('/add_turksuggest/')
 def addTS():
