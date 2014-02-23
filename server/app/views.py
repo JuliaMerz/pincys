@@ -1,4 +1,4 @@
-from app import app, db, models, sorter
+from app import app, db, models, sorter, htmlhelper
 from flask import request
 
 @app.route('/')
@@ -23,8 +23,10 @@ def process_input():
     sorted_sugg_list = get_suggestions(picobj, pinid, desc, picurl)
     
     #convert it to html and return it (sebastian do this)
-    return get_html(sorted_sugg_list)
+    return get_suggest_html(sorted_sugg_list)
 
 @app.route('/add_turksuggest/')
 def addTS():
+    #this takes the result from a hit and adds it to the database,
+    #if the suggestion already exists, modifies rating accordingly.
     return "Not implemented."
