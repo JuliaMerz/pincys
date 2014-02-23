@@ -1,5 +1,6 @@
 from app import app, db, models, sorter
 from flask import request
+
 @app.route('/')
 @app.route('/index')
 def index():
