@@ -2,7 +2,7 @@ from app import db
 
 class pintrest_picture(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    pintrest_ID = db.Column(db.Integer, unique = True)
+    pintrest_ID = db.Column(db.String(128), unique = True)
     picture_URL = db.Column(db.String(256), unique = True)
     suggestions = db.relationship('suggestion', backref = 'pintrest_pin', lazy='dynamic')
     
