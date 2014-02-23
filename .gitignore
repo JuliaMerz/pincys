@@ -1,0 +1,5 @@
+mturk/keys.py
+*.pyc
+server/flask/*
+server/virtualenv*
+server/run.py
