@@ -20,7 +20,7 @@ def process_input():
     picobj = models.pintrest_picture.query.filter_by(pintrest_ID=pinid).first()
     
     #get the suggestion objects etc
-    sorted_sugg_list = get_suggestions(picobj, pinid, desc)
+    sorted_sugg_list = get_suggestions(picobj, pinid, desc, picurl)
     
     #convert it to html and return it (sebastian do this)
     return get_html(sorted_sugg_list)

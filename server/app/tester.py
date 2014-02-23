@@ -2,6 +2,7 @@ import requests
 import json
 from flask import request
 from keys import APIKEY
+from rake import rake
 
 #returns top 5 picurls/producturl/producttitle for the designated keywords
 #def macySearch(key):
@@ -21,7 +22,7 @@ if num_products == 0:
 
 products = jdata["searchresultgroups"][0]["products"]['product']
 
-retArr = range(15)
+retArr = [None] * 15
 
 k = 0
 for i in products:

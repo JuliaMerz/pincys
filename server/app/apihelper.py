@@ -4,7 +4,7 @@ from flask import request
 from keys import APIKEY
 
 #returns top 5 picurls/producturl/producttitle for the designated keyword
-def macySearch(key):
+def macy_search(key):
     hdr = {
         "Accept": "application/json",
         "X-Macys-Webservice-Client-Id": APIKEY,
@@ -23,8 +23,9 @@ def macySearch(key):
     
     products = jdata["searchresultgroups"][0]["products"]['product']
     
-    retArr = range(15)
-    k = 0
+    retArr = [None]*16
+    retArr[0] = num_products;
+    k = 1
     for i in products:
         retArr[k] = i["summary"]["name"]
         k += 1
