@@ -25,8 +25,28 @@ def process_input():
     #convert it to html and return it (sebastian do this)
     return get_suggest_html(sorted_sugg_list)
 
-@app.route('/add_turksuggest/')
-def addTS():
-    #this takes the result from a hit and adds it to the database,
-    #if the suggestion already exists, modifies rating accordingly.
-    return "Not implemented."
+@app.route('/send_top_to_turk/', methods=['POST'])
+def execute():
+    #goes to mTurk and submits the top 50 suggestion_pinid by viewcount
+    #this gets matching ID's for the hits.
+    
+    if request.form['KEY'] != youSUREyouWANTtoSPENDmoney: return "401"
+    
+    totallist = models.suggestion.query.order_by(suggestion.view_count)
+    
+    for sugg in totallist:
+        k = 0
+        if sugg.mrating_count < 2 && k < 50:
+            pinim_url = sugg.pintrest_id.picture_URL
+            pin_desc = sugg.pintrest_id.pin_desc
+            new_sugg_hit(pinim_url, pin_desc)
+            k += 1
+
+@app.route('/send_ratings_to_turk/', methods['POST'])
+def execute():
+    #goes to mTurk and submits the top 500 suggestions to be rated.
+
+
+
+
+

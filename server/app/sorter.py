@@ -10,7 +10,7 @@ def get_suggestions(pint_obj, pinid, desc, purl)):
     if pint_obj == None:
         #add a new pintrest pic obj
         pint_obj = models.pintrest_picture(pintrest_ID=pinid, pin_desc = desc picture_URL=purl)
-        db.session.add(u)
+        db.session.add(pint_obj)
         db.session.commit()
         
     #now we know the obj exists, so lets find some suggestions
@@ -24,7 +24,7 @@ def get_suggestions(pint_obj, pinid, desc, purl)):
             k = 1
             #create new suggestion obj
             while vals[k] != None && k < 16:
-                s = models.suggestion(pintrest_id=pint_obj,picture,product_title=vals[k],
+                s = models.suggestion(pintrest_id=pint_obj,product_title=vals[k],
                     product_URL=vals[k+1], picture_URL=vals[k+2])
                 db.session.add(s)
                 db.session.commit()

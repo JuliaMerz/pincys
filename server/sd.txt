@@ -1,1 +1,4 @@
-ID=12345678&DESCRIPTION=GIRLYPINTAGS curl -X POST -d @sd.txt 127.0.0.1:4040/get_suggestions/12345 --header content-type:application/x-www-form-urlencoded;charset=utf-8
+KEY=youSUREyouWANTtoSPENDmoney
+
+
+curl -X POST -d "KEY=youSUREyouWANTtoSPENDmoney" <SERVERIP>/send_top_to_turk --header content-type:application/x-www-form-urlencoded;charset=utf-8
