@@ -8,9 +8,57 @@ var pincys = {
 
   suggestionLoader:  function() {
     var url = $(this).parent().parent().children(".pinHolder").children().attr("href");
+    $(this).addClass("active")
     var pinid = url.split("/")[2];
     console.log(pinid);
-    $(this).append($.get("http://www.pincy.co:5000/getSuggestions/"+pinid));
+    console.log(this);
+
+    var description = $(this).parent().parent().parent().children(".pinMeta").children(".pinDescription").html();
+    var picURL = $(this).parent().parent().children(".pinHolder").children("a").children("div").children("img").attr("src");
+    console.log(description);
+    console.log(picURL);
+
+    var target = $(this).parent().parent().parent().parent().parent();
+    var top = target.css("top");
+    var left = target.css("left");
+    $.post(chrome.extension.getURL("index.html"), {id: pinid, description: description, picurl: picURL}, function(data) {console.log(data); 
+    //$.get(chrome.extension.getURL("index.html"),  function(data) {console.log(data); 
+      console.log($(".pincysButton.active"));
+      $(document).mouseup(function (e)
+        {
+          var container = $(".id23");
+
+          if (!container.is(e.target) // if the target of the click isn't the container...
+            && container.has(e.target).length === 0) // ... nor a descendant of the container
+          {
+          container.hide();
+          }
+        });
+
+
+      console.log(target);
+      var topDist = parseInt(top) + 100;
+      var topDistance = topDist+"px";
+      console.log("Left distance initial: "+left+" Also: " + parseInt(left));
+      if(left == "0px"){
+        var leftDist = parseInt(left) + 325;
+      }else{
+        var leftDist = parseInt(left) - 185;
+      }
+      console.log("Left distance final: "+leftDist);
+      var leftDistance = leftDist + "px";
+      console.log(topDistance);
+      console.log(leftDistance);
+      $("body").append(data);
+      $(".id23").tinycarousel();
+      $(".id23").css("top", topDistance).css("left", leftDistance).show();
+      //.mouseout(function() {
+      //  console.log(this);
+      //  $(this).hide();
+      //  $(this).parent().children(".pincysButton.active").removeClass(".active");
+        });//});
+
+
   },
 
   loadButtons: function(){
@@ -18,6 +66,7 @@ var pincys = {
     $(".repinSendButtonWrapper").append(pincys.button);
     $(".pincysButton em").css("background-image", "url("+imageURL+")")
       .parent().click(pincys.suggestionLoader);
+    $(".item").addClass("loaded");
     $(document).on("DOMNodeInserted","div[class='item ']", pincys.loadButton);
     $(document).on("DOMNodeInserted","div[class='ajax HomePage Module']", pincys.loadGroupButtons);
   },

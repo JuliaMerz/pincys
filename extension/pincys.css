@@ -16,22 +16,62 @@
 .pincysButton:hover{
   background-image: linear-gradient(#FFFFFF, #CCCCCC);
 }
-.pincysButton:active{
+.pincysButton.active{
   background-image: linear-gradient(#F0F0F0, #FFFFFF);
 }
 
 .pincysSuggestionWindow {
-    width: 200px;
+    width: 262px;
 }
 
-h3 {
-    display:float;
-    margin-left: 10px;
-    padding-bottom: 20px;
+h3.pincysHeading{
+    padding: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    margin-left: -2px;
+    margin-bottom: 0px;
+    height: 48px;
     color:white;
     background-color: rgba(25, 25, 25, 0.5);
     position:relative;
     float: left;
-    width: 200px;
+    width: 262px;
     top: -60px;
+}
+
+/* Tiny Carousel */
+#slider { overflow:hidden; padding: 0 0; position:absolute; height:320px; z-index:100000;}
+#slider .viewport { float: left; width: 262px; height: 320px; overflow: hidden; position: relative; }
+#slider .buttons {
+    background: #C01313;
+    border-radius: 35px;
+    display: block;
+    margin: 120px -252px; 0 0;
+    float: left;
+    width: 35px;
+    height: 35px;
+    position: relative;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    font-size: 22px;
+}
+#slider .nexty {
+    margin: 120px 0 0 -45px;
+}
+#slider .buttons:hover{
+    color: #C01313;
+    background: #fff;
+}
+#slider .disable { visibility: hidden; }
+#slider .overview { list-style: none; position: absolute; padding: 0; margin: 0; width: 262px; left: 0 top: 0; }
+#slider .overview li{ float: left; margin: 0 20px 0 0; padding: 1px; height: 320px; border: 0px ff0000; width: 262px;}
+
+span.pinceySpan{
+   top: -60px;
+    background-color: rgba(25, 25, 25, 0.5);
+    position: relative;
+    float: left;
 }
