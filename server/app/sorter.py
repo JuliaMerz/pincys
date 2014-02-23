@@ -2,7 +2,8 @@ from app import app, db, models
 from apihelper import macy_search
 from rake import rake
 
-#needs to return a sorted list of the suggestions
+#needs to return a sorted list of the suggestions,
+#returns None if no suggestions can be found
 def get_suggestions(pint_obj, pinid, desc, purl)):
         
     #check if we were passed an empty object (look it up on macys)
@@ -25,6 +26,8 @@ def get_suggestions(pint_obj, pinid, desc, purl)):
             while vals[k] != None && k < 16:
                 s = models.suggestion(pintrest_id=pint_obj,picture,product_title=vals[k],
                     product_URL=vals[k+1], picture_URL=vals[k+2])
+                db.session.add(s)
+                db.session.commit()
                 currsug.append(s)
                 k += 3
         i += 1
@@ -36,7 +39,9 @@ def get_suggestions(pint_obj, pinid, desc, purl)):
     for(k in currsug):
         weight = (k.user_rating * 5 + k.mturk_rating * 3 + weights[k] * 2)/30
         weights[k] = weight
-        k += 1 #REORDER FIXME BY WEIGHT
+        k += 1
+    #need to actually order the suggestions according to their weights
+    #higher == better
     return currsug 
     
     
