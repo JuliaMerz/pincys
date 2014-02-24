@@ -6,8 +6,8 @@ debug = True
 
 HOST = 'mechanicalturk.sandbox.amazonaws.com'
 
-PIN_IMAGE_URL = 'http://media-cache-ec0.pinimg.com/236x/ef/cc/fd/efccfd1d0e409346cbec7eb2157d45ee.jpg'
-PIN_IMAGE_TITLE = '34 Beautiful Polyvore Combination Who Can Inspire You - would change out the chucks for Sperry\'s'
+PIN_IMAGE_URL = 'http://media-cache-ak0.pinimg.com/236x/17/8f/99/178f993435fb2718ab6e22ba29d704e0.jpg'
+PIN_IMAGE_TITLE = 'Arnhem Clothing \'Song Bird\' Kimono in Mayan Song. Via Soleilblue..'
 
 
 mtc = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,

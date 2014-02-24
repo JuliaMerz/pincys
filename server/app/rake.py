@@ -9,7 +9,7 @@ import operator
 import math
 
 debug = True
-test = False
+test = True
 
 def isnum (s):
     try:
@@ -129,7 +129,7 @@ if test:
 
 	totalKeywords = len(sortedKeywords)
 	if debug: print totalKeywords
-	print sortedKeywords[0:(totalKeywords/3)]
+	print sortedKeywords[5][0]
     
 def rake(text):
     sentenceList = splitSentences(text)

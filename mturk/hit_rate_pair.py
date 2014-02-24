@@ -1,9 +1,16 @@
 from boto.mturk.connection import MTurkConnection
+from boto.mturk.question import QuestionContent,Question,QuestionForm,Overview,AnswerSpecification,SelectionAnswer,FormattedContent,FreeTextAnswer
 from keys import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
 
 debug = True
 
 HOST = 'mechanicalturk.sandbox.amazonaws.com'
+
+MACYS_IMAGE_URL = 'http://i.imgur.com/1f7moUz.jpg'
+MACYS_IMAGE_TITLE = 'Material Girl Juniors Floral-Print Illusion Dress'
+
+PIN_IMAGE_URL = 'http://media-cache-ec0.pinimg.com/736x/de/21/31/de2131cb6d0fa52faaee161047194896.jpg'
+PIN_IMAGE_TITLE = 'Floral print maxi dress by Marc Jacobs.'
 
 mtc = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,
                       aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
@@ -25,7 +32,7 @@ ratings =[('Very Bad','1'),
  
 overview = Overview()
 overview.append_field('Title', 'Rank how these two images match.')
-overview.append(FormattedContent('<table border="1">><tr><td width="50%"><img src="'+PIN_IMAGE_URL+'" alt="Pintrest Image" /></td>'
+overview.append(FormattedContent('<table border="1"><tr><td width="50%"><img src="'+PIN_IMAGE_URL+'" alt="Pintrest Image" /></td>'
                                  '<td width="50%"><img src="'+MACYS_IMAGE_URL+'" alt="Macys Image" /></td></tr><tr>'
                                  '<td width="50%">'+PIN_IMAGE_TITLE+'</td><td width="50%">'+MACYS_IMAGE_TITLE+'</td></tr></table>'))
 #make q1
