@@ -8,14 +8,15 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.pinterest.com/*clothing*",
-        "*://*.pinterest.com/*appliances*",
-        "*://*.pinterest.com/*shoes*",
-        "*://*.pinterest.com/*jewelry*",
-        "*://*.pinterest.com/*kitchen*"
+      //  "*://*.pinterest.com/*clothing*",
+      //  "*://*.pinterest.com/*appliances*",
+      //  "*://*.pinterest.com/*shoes*",
+      //  "*://*.pinterest.com/*jewelry*",
+      //  "*://*.pinterest.com/*kitchen*"
+        "*://*.pinterest.com/*"
           ],
       "css": ["pincys.css"],
-      "js": ["jquery-2.1.0.min.js", "pincys.js"]
+      "js": ["jquery-2.1.0.min.js", "pincys.js", "js/jquery.tinycarousel.min.js"]
     }
   ],
   "permissions": [
@@ -31,7 +32,9 @@
   },
   "web_accessible_resources": [
     "images/*.png",
-    "pincys.css"
+    "pincys.css",
+    "index.html"
+
     ]
 
 }

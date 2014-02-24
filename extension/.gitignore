@@ -1,0 +1,7 @@
+venv/
+stuff
+db_repository/
+*.swp
+app.db
+run.py
+*.pyc

@@ -1,83 +1,111 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-/**
- * Global variable containing the query we'd like to pass to Flickr. In this
- * case, kittens!
- *
- * @type {string}
+/*
+ * Pincy's (Pinterest + Macy's) Chrome Extension
  */
-var QUERY = 'kittens';
 
-var kittenGenerator = {
-  /**
-   * Flickr URL that will give us lots and lots of whatever we're looking for.
-   *
-   * See http://www.flickr.com/services/api/flickr.photos.search.html for
-   * details about the construction of this URL.
-   *
-   * @type {string}
-   * @private
-   */
-  searchOnFlickr_: 'https://secure.flickr.com/services/rest/?' +
-      'method=flickr.photos.search&' +
-      'api_key=90485e931f687a9b9c2a66bf58a3861a&' +
-      'text=' + encodeURIComponent(QUERY) + '&' +
-      'safe_search=1&' +
-      'content_type=1&' +
-      'sort=interestingness-desc&' +
-      'per_page=20',
+  
+var pincys = {
+  button:  "<button class=\"pincysButton ButtonBase btn\"><em class=\"pincysEM\"></em><span class=\"accessibilityText\">Search on Macy's</span></button>",
 
-  /**
-   * Sends an XHR GET request to grab photos of lots and lots of kittens. The
-   * XHR's 'onload' event is hooks up to the 'showPhotos_' method.
-   *
-   * @public
-   */
-  requestKittens: function() {
-    var req = new XMLHttpRequest();
-    req.open("GET", this.searchOnFlickr_, true);
-    req.onload = this.showPhotos_.bind(this);
-    req.send(null);
+  suggestionLoader:  function() {
+    var url = $(this).parent().parent().children(".pinHolder").children().attr("href");
+    $(this).addClass("active")
+    var pinid = url.split("/")[2];
+    console.log(pinid);
+    console.log(this);
+
+    var description = $(this).parent().parent().parent().children(".pinMeta").children(".pinDescription").html();
+    var picURL = $(this).parent().parent().children(".pinHolder").children("a").children("div").children("img").attr("src");
+    console.log(description);
+    console.log(picURL);
+
+    var target = $(this).parent().parent().parent().parent().parent();
+    var top = target.css("top");
+    var left = target.css("left");
+    $.post(chrome.extension.getURL("index.html"), {id: pinid, description: description, picurl: picURL}, function(data) {console.log(data); 
+    //$.get(chrome.extension.getURL("index.html"),  function(data) {console.log(data); 
+      console.log($(".pincysButton.active"));
+      $(document).mouseup(function (e)
+        {
+          var container = $(".id23");
+
+          if (!container.is(e.target) // if the target of the click isn't the container...
+            && container.has(e.target).length === 0) // ... nor a descendant of the container
+          {
+          container.hide();
+          }
+        });
+
+
+      console.log(target);
+      var topDist = parseInt(top) + 100;
+      var topDistance = topDist+"px";
+      console.log("Left distance initial: "+left+" Also: " + parseInt(left));
+      if(left == "0px"){
+        var leftDist = parseInt(left) + 325;
+      }else{
+        var leftDist = parseInt(left) - 185;
+      }
+      console.log("Left distance final: "+leftDist);
+      var leftDistance = leftDist + "px";
+      console.log(topDistance);
+      console.log(leftDistance);
+      $("body").append(data);
+      $(".id23").tinycarousel();
+      $(".id23").css("top", topDistance).css("left", leftDistance).show();
+      //.mouseout(function() {
+      //  console.log(this);
+      //  $(this).hide();
+      //  $(this).parent().children(".pincysButton.active").removeClass(".active");
+        });//});
+
+
   },
 
-  /**
-   * Handle the 'onload' event of our kitten XHR request, generated in
-   * 'requestKittens', by generating 'img' elements, and stuffing them into
-   * the document for display.
-   *
-   * @param {ProgressEvent} e The XHR ProgressEvent.
-   * @private
-   */
-  showPhotos_: function (e) {
-    var kittens = e.target.responseXML.querySelectorAll('photo');
-    for (var i = 0; i < kittens.length; i++) {
-      var img = document.createElement('img');
-      img.src = this.constructKittenURL_(kittens[i]);
-      img.setAttribute('alt', kittens[i].getAttribute('title'));
-      document.body.appendChild(img);
-    }
+  loadButtons: function(){
+    var imageURL = chrome.extension.getURL("images/pincysButton.png");
+    $(".repinSendButtonWrapper").append(pincys.button);
+    $(".pincysButton em").css("background-image", "url("+imageURL+")")
+      .parent().click(pincys.suggestionLoader);
+    $(".item").addClass("loaded");
+    $(document).on("DOMNodeInserted","div[class='item ']", pincys.loadButton);
+    $(document).on("DOMNodeInserted","div[class='ajax HomePage Module']", pincys.loadGroupButtons);
   },
 
-  /**
-   * Given a photo, construct a URL using the method outlined at
-   * http://www.flickr.com/services/api/misc.urlKittenl
-   *
-   * @param {DOMElement} A kitten.
-   * @return {string} The kitten's URL.
-   * @private
-   */
-  constructKittenURL_: function (photo) {
-    return "http://farm" + photo.getAttribute("farm") +
-        ".static.flickr.com/" + photo.getAttribute("server") +
-        "/" + photo.getAttribute("id") +
-        "_" + photo.getAttribute("secret") +
-        "_s.jpg";
+  loadButton: function() {
+    console.log("Load Button");
+    //console.log("attempt");
+    //if($(this).hasClass("item")){
+    //console.log(this);
+    var imageURL = chrome.extension.getURL("images/pincysButton.png");
+    $(this).addClass("loaded");
+    $(this).children().children().children(".pinImageActionButtonWrapper")
+      .children(".repinSendButtonWrapper").append(pincys.button)
+      .children(".pincysButton").children(".pincysButton em")
+      .css("background-image", "url("+imageURL+")")
+      .parent().click(pincys.suggestionLoader);
+    //}
+  },
+
+  loadGroupButtons: function() {
+    console.log("Big attempt");
+    console.log(this);
+    var imageURL = chrome.extension.getURL("images/pincysButton.png");
+    $(this).addClass("loaded");
+    var stuff = $(this).children().children().children("div").children(".padItems")
+        .children().children().children().children(".pinImageActionButtonWrapper")
+        .children(".repinSendButtonWrapper");
+    console.log(stuff);
+    stuff.append("<b></b>");
   }
-};
 
-// Run our kitten generation script as soon as the document's DOM is ready.
-document.addEventListener('DOMContentLoaded', function () {
-  kittenGenerator.requestKittens();
+}
+
+$(document).ready( function(){
+  console.log("So jquery works...");
+  pincys.loadButtons();
 });
+
+/*document.addEventListener('DOMContentLoaded', function () {
+  console.log("THIS PART IS NOW RUNNING!");
+    pincys.loadButtons();
+});*/
