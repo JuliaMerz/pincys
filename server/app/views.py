@@ -23,8 +23,19 @@ def process_input():
     sorted_sugg_list = get_suggestions(picobj, pinid, desc, picurl)
     
     #convert it to html and return it (sebastian do this)
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+    print sorted_sugg_list
+    return htmlhelper.get_suggest_html(sorted_sugg_list)
+
+=======
     return get_suggest_html(sorted_sugg_list)
 
+>>>>>>> External Changes
+=======
+    return get_suggest_html(sorted_sugg_list)
+
+>>>>>>> External Changes
 @app.route('/send_top_to_turk/', methods=['POST'])
 def execute():
     #goes to mTurk and submits the top 50 suggestion_pinid by viewcount
@@ -41,7 +52,17 @@ def execute():
             new_sugg_hit(pinim_url, pin_desc)
             k += 1
 
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+@app.route('/send_ratings_to_turk/', methods=['POST'])
+=======
+=======
+>>>>>>> External Changes
 @app.route('/send_ratings_to_turk/', methods['POST'])
+<<<<<<< Local Changes
+>>>>>>> External Changes
+=======
+>>>>>>> External Changes
 def execute():
     #goes to mTurk and submits the top 500 suggestions to be rated.
     if request.form['KEY'] != youSUREyouWANTtoSPENDmoney: return "401"
@@ -65,4 +86,9 @@ def rate(id,rating):
     newrtg = (oldrtg * oldcount + rating) / (oldcount + 1 )
     sugg.user_rating = newrtg
     db.session.commit()
-    
+<<<<<<< Local Changes
+<<<<<<< Local Changes
+=======
+    >>>>>>> External Changes
+=======
+    >>>>>>> External Changes
