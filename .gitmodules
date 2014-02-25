@@ -1,3 +1,6 @@
 [submodule "RAKE"]
 	path = RAKE
 	url = https://github.com/NickFirmani/RAKE.git
+[submodule "server/app/RAKE"]
+	path = server/app/RAKE
+	url = https://github.com/NickFirmani/RAKE.git
