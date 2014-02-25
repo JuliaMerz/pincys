@@ -83,16 +83,7 @@ def process_input():
     print sorted_sugg_list
     return htmlhelper.get_suggest_html(sorted_sugg_list)
 
-<<<<<<< HEAD
-=======
-@app.route('/add_turksuggest/')
-def addTS():
-    #this takes the result from a hit and adds it to the database,
-    #if the suggestion already exists, modifies rating accordingly.
-    return "Not implemented."
 
-
->>>>>>> 85c143e5982c0e7a3b69aad00a91a9778d29a642
 @app.route('/send_top_to_turk/', methods=['POST'])
 def execute():
     #goes to mTurk and submits the top 50 suggestion_pinid by viewcount
@@ -109,11 +100,7 @@ def execute():
             new_sugg_hit(pinim_url, pin_desc)
             k += 1
 
-<<<<<<< HEAD
-@app.route('/send_ratings_to_turk/', methods['POST'])
-=======
 @app.route('/send_ratings_to_turk/', methods=['POST'])
->>>>>>> 85c143e5982c0e7a3b69aad00a91a9778d29a642
 def execute():
     #goes to mTurk and submits the top 500 suggestions to be rated.
     if request.form['KEY'] != youSUREyouWANTtoSPENDmoney: return "401"
@@ -137,8 +124,3 @@ def rate(id,rating):
     newrtg = (oldrtg * oldcount + rating) / (oldcount + 1 )
     sugg.user_rating = newrtg
     db.session.commit()
-<<<<<<< HEAD
-    
-=======
-    
->>>>>>> 85c143e5982c0e7a3b69aad00a91a9778d29a642
