@@ -17,4 +17,4 @@
     * Python side, built the Flask/SQLAlchemy/MTurk backend to provide accurate suggestions.
 
 ## _Release Plans_
-  * To be determined.
+  * Spring 2014
