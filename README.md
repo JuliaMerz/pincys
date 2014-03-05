@@ -12,7 +12,7 @@
 
 ## _Contributors_
   * Sebastian Merz
-    * JavaScript side, built the Chrome extension to place the button in the Pintrest UI cleanly.
+    * JavaScript side, built the Chrome extension to add the Pincy's UI to Pinterest. Debugged stuff.
   * Nick Firmani
     * Python side, built the Flask/SQLAlchemy/MTurk backend to provide accurate suggestions.
 
